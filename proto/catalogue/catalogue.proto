@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package catalogue;
+
+option go_package = "bxiit.catalogue.v1;cataloguev1";
+
+service CatalogueService {
+  rpc CreateItem(CreateItemRequest) returns (CreateItemResponse);
+  rpc ListItems(ListItemsRequest) returns (ListItemsResponse);
+  rpc GetItem(GetItemRequest) returns (GetItemResponse);
+}
+
+message ListItemsRequest {}
+
+message ListItemsResponse {
+  repeated Item items = 1;
+}
+
+message GetItemRequest {
+  string id = 1;
+}
+
+message GetItemResponse {
+  Item item = 1;
+}
+
+message CreateItemRequest {
+  Item item = 1;
+}
+message CreateItemResponse {
+  Item item = 1;
+}
+
+message Item {
+  int32 id = 1;
+  string name = 2;
+  int32 price = 3;
+  string description = 4;
+  int32 quantity = 5;
+}
