@@ -38,3 +38,11 @@ message Item {
   string description = 4;
   int32 quantity = 5;
 }
+
+message DeleteItemRequest {
+  int32 id = 1;
+}
+
+message DeleteItemResponse {
+  bool isDeleted = 1;
+}
