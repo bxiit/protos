@@ -54,6 +54,7 @@ message Item {
   string imageUrl = 6 [json_name="image_url"];
 }
 
+
 message DeleteItemRequest {
   int32 id = 1;
 }
