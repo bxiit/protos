@@ -46,11 +46,12 @@ message CreateItemResponse {
 }
 
 message Item {
-  int32 id = 1;
-  string name = 2;
-  int32 price = 3;
-  string description = 4;
-  int32 quantity = 5;
+  int32 id = 1 [json_name="id"];
+  string name = 2 [json_name="name"];
+  int32 price = 3 [json_name="price"];
+  string description = 4 [json_name="description"];
+  int32 quantity = 5 [json_name="quantity"];
+  string imageUrl = 6 [json_name="imageUrl"];
 }
 
 message DeleteItemRequest {
