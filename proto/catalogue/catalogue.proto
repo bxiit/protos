@@ -3,11 +3,25 @@ syntax = "proto3";
 package catalogue;
 
 option go_package = "bxiit.catalogue.v1;cataloguev1";
+import "google/api/annotations.proto";
 
 service CatalogueService {
-  rpc CreateItem(CreateItemRequest) returns (CreateItemResponse);
-  rpc ListItems(ListItemsRequest) returns (ListItemsResponse);
-  rpc GetItem(GetItemRequest) returns (GetItemResponse);
+  rpc CreateItem(CreateItemRequest) returns (CreateItemResponse) {
+    option(google.api.http) = {
+      post: "/v1/items"
+      body: "*"
+    };
+  };
+  rpc ListItems(ListItemsRequest) returns (ListItemsResponse) {
+    option(google.api.http) = {
+      get: "/v1/items"
+    };
+  };
+  rpc GetItem(GetItemRequest) returns (GetItemResponse) {
+    option(google.api.http) = {
+      get: "/v1/items/{id}"
+    };
+  };
 }
 
 message ListItemsRequest {}

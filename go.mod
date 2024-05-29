@@ -9,6 +9,8 @@ require (
 
 require (
 	github.com/golang/protobuf v1.5.4 // indirect
+	github.com/googleapis/googleapis v0.0.0-20240525061559-14eabb106ea1 // indirect
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0 // indirect
 	golang.org/x/net v0.25.0 // indirect
 	golang.org/x/sys v0.20.0 // indirect
 	golang.org/x/text v0.15.0 // indirect
