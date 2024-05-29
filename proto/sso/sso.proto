@@ -34,6 +34,13 @@ service Auth {
       body: "*"
     };
   };
+
+  rpc IsAuthenticated (IsAuthenticatedRequest) returns (IsAuthenticatedResponse) {
+    option(google.api.http) = {
+      post: "/v1/users/isAuthenticated"
+      body: "*"
+    };
+  };
 }
 
 // Объект, который отправляется при вызове RPC-метода (ручки) Register.
@@ -64,4 +71,12 @@ message IsAdminRequest {
 
 message IsAdminResponse {
   bool is_admin = 1 [json_name="isAdmin"]; // Indicates whether the user is an admin.
+}
+
+message IsAuthenticatedRequest {
+  string token = 1 [ json_name = "token"];
+}
+
+message IsAuthenticatedResponse {
+  bool is_authenticated = 1 [ json_name = "is_authenticated"];
 }
