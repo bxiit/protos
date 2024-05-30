@@ -31,7 +31,7 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_CatalogueService_CreateItem_0(ctx context.Context, marshaler runtime.Marshaler, client CatalogueServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_OrderService_CreateOrder_0(ctx context.Context, marshaler runtime.Marshaler, client OrderServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateOrderRequest
 	var metadata runtime.ServerMetadata
 
@@ -39,12 +39,12 @@ func request_CatalogueService_CreateItem_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.CreateItem(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CreateOrder(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_CatalogueService_CreateItem_0(ctx context.Context, marshaler runtime.Marshaler, server CatalogueServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_OrderService_CreateOrder_0(ctx context.Context, marshaler runtime.Marshaler, server OrderServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateOrderRequest
 	var metadata runtime.ServerMetadata
 
@@ -52,12 +52,12 @@ func local_request_CatalogueService_CreateItem_0(ctx context.Context, marshaler 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.CreateItem(ctx, &protoReq)
+	msg, err := server.CreateOrder(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_CatalogueService_ListOrders_0(ctx context.Context, marshaler runtime.Marshaler, client CatalogueServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_OrderService_ListOrders_0(ctx context.Context, marshaler runtime.Marshaler, client OrderServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListOrdersRequest
 	var metadata runtime.ServerMetadata
 
@@ -66,7 +66,7 @@ func request_CatalogueService_ListOrders_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_CatalogueService_ListOrders_0(ctx context.Context, marshaler runtime.Marshaler, server CatalogueServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_OrderService_ListOrders_0(ctx context.Context, marshaler runtime.Marshaler, server OrderServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListOrdersRequest
 	var metadata runtime.ServerMetadata
 
@@ -75,7 +75,7 @@ func local_request_CatalogueService_ListOrders_0(ctx context.Context, marshaler 
 
 }
 
-func request_CatalogueService_GetOrder_0(ctx context.Context, marshaler runtime.Marshaler, client CatalogueServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_OrderService_GetOrder_0(ctx context.Context, marshaler runtime.Marshaler, client OrderServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetOrderRequest
 	var metadata runtime.ServerMetadata
 
@@ -101,7 +101,7 @@ func request_CatalogueService_GetOrder_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_CatalogueService_GetOrder_0(ctx context.Context, marshaler runtime.Marshaler, server CatalogueServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_OrderService_GetOrder_0(ctx context.Context, marshaler runtime.Marshaler, server OrderServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetOrderRequest
 	var metadata runtime.ServerMetadata
 
@@ -127,13 +127,13 @@ func local_request_CatalogueService_GetOrder_0(ctx context.Context, marshaler ru
 
 }
 
-// RegisterCatalogueServiceHandlerServer registers the http handlers for service CatalogueService to "mux".
-// UnaryRPC     :call CatalogueServiceServer directly.
+// RegisterOrderServiceHandlerServer registers the http handlers for service OrderService to "mux".
+// UnaryRPC     :call OrderServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterCatalogueServiceHandlerFromEndpoint instead.
-func RegisterCatalogueServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server CatalogueServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterOrderServiceHandlerFromEndpoint instead.
+func RegisterOrderServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server OrderServiceServer) error {
 
-	mux.Handle("POST", pattern_CatalogueService_CreateItem_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_OrderService_CreateOrder_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -141,12 +141,12 @@ func RegisterCatalogueServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/order.CatalogueService/CreateItem", runtime.WithHTTPPathPattern("/v1/orders"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/order.OrderService/CreateOrder", runtime.WithHTTPPathPattern("/v1/orders"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CatalogueService_CreateItem_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_OrderService_CreateOrder_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -154,11 +154,11 @@ func RegisterCatalogueServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_CatalogueService_CreateItem_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_OrderService_CreateOrder_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_CatalogueService_ListOrders_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_OrderService_ListOrders_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -166,12 +166,12 @@ func RegisterCatalogueServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/order.CatalogueService/ListOrders", runtime.WithHTTPPathPattern("/v1/orders"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/order.OrderService/ListOrders", runtime.WithHTTPPathPattern("/v1/orders"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CatalogueService_ListOrders_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_OrderService_ListOrders_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -179,11 +179,11 @@ func RegisterCatalogueServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_CatalogueService_ListOrders_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_OrderService_ListOrders_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_CatalogueService_GetOrder_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_OrderService_GetOrder_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -191,12 +191,12 @@ func RegisterCatalogueServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/order.CatalogueService/GetOrder", runtime.WithHTTPPathPattern("/v1/orders/{id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/order.OrderService/GetOrder", runtime.WithHTTPPathPattern("/v1/orders/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CatalogueService_GetOrder_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_OrderService_GetOrder_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -204,16 +204,16 @@ func RegisterCatalogueServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_CatalogueService_GetOrder_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_OrderService_GetOrder_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterCatalogueServiceHandlerFromEndpoint is same as RegisterCatalogueServiceHandler but
+// RegisterOrderServiceHandlerFromEndpoint is same as RegisterOrderServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterCatalogueServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterOrderServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
@@ -233,85 +233,85 @@ func RegisterCatalogueServiceHandlerFromEndpoint(ctx context.Context, mux *runti
 		}()
 	}()
 
-	return RegisterCatalogueServiceHandler(ctx, mux, conn)
+	return RegisterOrderServiceHandler(ctx, mux, conn)
 }
 
-// RegisterCatalogueServiceHandler registers the http handlers for service CatalogueService to "mux".
+// RegisterOrderServiceHandler registers the http handlers for service OrderService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterCatalogueServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterCatalogueServiceHandlerClient(ctx, mux, NewCatalogueServiceClient(conn))
+func RegisterOrderServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterOrderServiceHandlerClient(ctx, mux, NewOrderServiceClient(conn))
 }
 
-// RegisterCatalogueServiceHandlerClient registers the http handlers for service CatalogueService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "CatalogueServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "CatalogueServiceClient"
+// RegisterOrderServiceHandlerClient registers the http handlers for service OrderService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "OrderServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "OrderServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "CatalogueServiceClient" to call the correct interceptors.
-func RegisterCatalogueServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client CatalogueServiceClient) error {
+// "OrderServiceClient" to call the correct interceptors.
+func RegisterOrderServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client OrderServiceClient) error {
 
-	mux.Handle("POST", pattern_CatalogueService_CreateItem_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_OrderService_CreateOrder_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/order.CatalogueService/CreateItem", runtime.WithHTTPPathPattern("/v1/orders"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/order.OrderService/CreateOrder", runtime.WithHTTPPathPattern("/v1/orders"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CatalogueService_CreateItem_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_OrderService_CreateOrder_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_CatalogueService_CreateItem_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_OrderService_CreateOrder_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_CatalogueService_ListOrders_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_OrderService_ListOrders_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/order.CatalogueService/ListOrders", runtime.WithHTTPPathPattern("/v1/orders"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/order.OrderService/ListOrders", runtime.WithHTTPPathPattern("/v1/orders"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CatalogueService_ListOrders_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_OrderService_ListOrders_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_CatalogueService_ListOrders_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_OrderService_ListOrders_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_CatalogueService_GetOrder_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_OrderService_GetOrder_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/order.CatalogueService/GetOrder", runtime.WithHTTPPathPattern("/v1/orders/{id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/order.OrderService/GetOrder", runtime.WithHTTPPathPattern("/v1/orders/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CatalogueService_GetOrder_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_OrderService_GetOrder_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_CatalogueService_GetOrder_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_OrderService_GetOrder_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -319,17 +319,17 @@ func RegisterCatalogueServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 }
 
 var (
-	pattern_CatalogueService_CreateItem_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "orders"}, ""))
+	pattern_OrderService_CreateOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "orders"}, ""))
 
-	pattern_CatalogueService_ListOrders_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "orders"}, ""))
+	pattern_OrderService_ListOrders_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "orders"}, ""))
 
-	pattern_CatalogueService_GetOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "orders", "id"}, ""))
+	pattern_OrderService_GetOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "orders", "id"}, ""))
 )
 
 var (
-	forward_CatalogueService_CreateItem_0 = runtime.ForwardResponseMessage
+	forward_OrderService_CreateOrder_0 = runtime.ForwardResponseMessage
 
-	forward_CatalogueService_ListOrders_0 = runtime.ForwardResponseMessage
+	forward_OrderService_ListOrders_0 = runtime.ForwardResponseMessage
 
-	forward_CatalogueService_GetOrder_0 = runtime.ForwardResponseMessage
+	forward_OrderService_GetOrder_0 = runtime.ForwardResponseMessage
 )
