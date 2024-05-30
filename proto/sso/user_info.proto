@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package sso;
+
+option go_package = "bxiit.sso.v1;ssov1";
+
+service UserInfo {
+  rpc GetUserInfo (GetUserInfoRequest) returns (GetUserInfoResponse) {}
+}
+
+message GetUserInfoRequest {
+  string token = 1 [json_name="token"]; // Email of the user to register.
+}
+
+message GetUserInfoResponse {
+  User user = 1 [json_name="user"];
+}
+
+message User {
+  int32 id = 1 [json_name="id"];
+  string username = 2 [json_name="username"];
+  int32 email = 3 [json_name="email"];
+  string role = 4 [json_name="role"];
+}

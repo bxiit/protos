@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v4.22.3
-// source: sso/sso.proto
+// source: sso/auth.proto
 
 package ssov1
 
@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Auth_Register_FullMethodName        = "/auth.Auth/Register"
-	Auth_Login_FullMethodName           = "/auth.Auth/Login"
-	Auth_IsAdmin_FullMethodName         = "/auth.Auth/IsAdmin"
-	Auth_IsAuthenticated_FullMethodName = "/auth.Auth/IsAuthenticated"
+	Auth_Register_FullMethodName        = "/sso.Auth/Register"
+	Auth_Login_FullMethodName           = "/sso.Auth/Login"
+	Auth_IsAdmin_FullMethodName         = "/sso.Auth/IsAdmin"
+	Auth_IsAuthenticated_FullMethodName = "/sso.Auth/IsAuthenticated"
 )
 
 // AuthClient is the client API for Auth service.
@@ -201,7 +201,7 @@ func _Auth_IsAuthenticated_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Auth_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.Auth",
+	ServiceName: "sso.Auth",
 	HandlerType: (*AuthServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -222,5 +222,5 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "sso/sso.proto",
+	Metadata: "sso/auth.proto",
 }

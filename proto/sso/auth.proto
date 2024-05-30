@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package auth;
+package sso;
 
 // Его формат очень прост, в нем будут описаны:
 //
