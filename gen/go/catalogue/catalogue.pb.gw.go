@@ -2,11 +2,11 @@
 // source: catalogue/catalogue.proto
 
 /*
-Package cataloguev1 is a reverse proxy.
+Package cataloguev20 is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package cataloguev1
+package cataloguev20
 
 import (
 	"context"

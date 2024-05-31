@@ -2,11 +2,11 @@
 // source: order/order.proto
 
 /*
-Package orderv1 is a reverse proxy.
+Package orderv20 is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package orderv1
+package orderv20
 
 import (
 	"context"

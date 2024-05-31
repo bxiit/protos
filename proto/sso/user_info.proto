@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package sso;
 
-option go_package = "bxiit.sso.v1;ssov1";
+option go_package = "github.com/bxiit/protos/gen/go/sso;ssov20";
 
 service UserInfo {
   rpc GetUserInfo (GetUserInfoRequest) returns (GetUserInfoResponse) {}

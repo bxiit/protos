@@ -2,8 +2,9 @@ syntax = "proto3";
 
 package order;
 
-option go_package = "bxiit.order.v1;orderv1";
+option go_package = "bxiit.order.v1;orderv20";
 import "google/api/annotations.proto";
+import "catalogue/catalogue.proto";
 
 service OrderService {
   rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse) {
@@ -40,6 +41,7 @@ message ListOrdersRequest {}
 
 message ListOrdersResponse {
   repeated Order orders = 1;
+  repeated catalogue.Item items = 2;
 }
 
 message GetOrderRequest {
