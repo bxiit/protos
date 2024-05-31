@@ -138,14 +138,14 @@ func request_OrderService_GetOrderByUserId_0(ctx context.Context, marshaler runt
 		_   = err
 	)
 
-	val, ok = pathParams["userId"]
+	val, ok = pathParams["user_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "userId")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "user_id")
 	}
 
 	protoReq.UserId, err = runtime.Int32(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "userId", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "user_id", err)
 	}
 
 	msg, err := client.GetOrderByUserId(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -164,14 +164,14 @@ func local_request_OrderService_GetOrderByUserId_0(ctx context.Context, marshale
 		_   = err
 	)
 
-	val, ok = pathParams["userId"]
+	val, ok = pathParams["user_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "userId")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "user_id")
 	}
 
 	protoReq.UserId, err = runtime.Int32(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "userId", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "user_id", err)
 	}
 
 	msg, err := server.GetOrderByUserId(ctx, &protoReq)
@@ -268,7 +268,7 @@ func RegisterOrderServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/order.OrderService/GetOrderByUserId", runtime.WithHTTPPathPattern("/v1/users/{userId}/orders"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/order.OrderService/GetOrderByUserId", runtime.WithHTTPPathPattern("/v1/users/{user_id}/orders"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -398,7 +398,7 @@ func RegisterOrderServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/order.OrderService/GetOrderByUserId", runtime.WithHTTPPathPattern("/v1/users/{userId}/orders"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/order.OrderService/GetOrderByUserId", runtime.WithHTTPPathPattern("/v1/users/{user_id}/orders"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -424,7 +424,7 @@ var (
 
 	pattern_OrderService_GetOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "orders", "id"}, ""))
 
-	pattern_OrderService_GetOrderByUserId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "users", "userId", "orders"}, ""))
+	pattern_OrderService_GetOrderByUserId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "users", "user_id", "orders"}, ""))
 )
 
 var (

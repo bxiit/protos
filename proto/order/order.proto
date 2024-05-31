@@ -25,7 +25,7 @@ service OrderService {
 
   rpc GetOrderByUserId(GetOrdersByUserId) returns (ListOrdersResponse) {
     option(google.api.http) = {
-      get: "/v1/users/{userId}/orders"
+      get: "/v1/users/{user_id}/orders"
     };
   }
 }
@@ -66,5 +66,5 @@ message DeleteOrderResponse {
 }
 
 message GetOrdersByUserId {
-  int32 userId = 1 [json_name="userId"];
+  int32 user_id = 1 [json_name="user_id"];
 }
