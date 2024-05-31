@@ -19,6 +19,6 @@ message GetUserInfoResponse {
 message User {
   int32 id = 1 [json_name="id"];
   string username = 2 [json_name="username"];
-  int32 email = 3 [json_name="email"];
+  string email = 3 [json_name="email"];
   string role = 4 [json_name="role"];
 }
