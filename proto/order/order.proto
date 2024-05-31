@@ -35,13 +35,13 @@ message Order {
   int32 id = 1 [json_name="id"];
   int32 item_id = 2 [json_name="item_id"];
   int32 user_id = 3 [json_name="user_id"];
+  catalogue.Item item = 4 [json_name="item"];
 }
 
 message ListOrdersRequest {}
 
 message ListOrdersResponse {
   repeated Order orders = 1;
-  repeated catalogue.Item items = 2;
 }
 
 message GetOrderRequest {
