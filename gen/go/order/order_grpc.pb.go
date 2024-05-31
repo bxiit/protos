@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	OrderService_CreateOrder_FullMethodName = "/order.OrderService/CreateOrder"
-	OrderService_ListOrders_FullMethodName  = "/order.OrderService/ListOrders"
-	OrderService_GetOrder_FullMethodName    = "/order.OrderService/GetOrder"
+	OrderService_CreateOrder_FullMethodName      = "/order.OrderService/CreateOrder"
+	OrderService_ListOrders_FullMethodName       = "/order.OrderService/ListOrders"
+	OrderService_GetOrder_FullMethodName         = "/order.OrderService/GetOrder"
+	OrderService_GetOrderByUserId_FullMethodName = "/order.OrderService/GetOrderByUserId"
 )
 
 // OrderServiceClient is the client API for OrderService service.
@@ -31,6 +32,7 @@ type OrderServiceClient interface {
 	CreateOrder(ctx context.Context, in *CreateOrderRequest, opts ...grpc.CallOption) (*CreateOrderResponse, error)
 	ListOrders(ctx context.Context, in *ListOrdersRequest, opts ...grpc.CallOption) (*ListOrdersResponse, error)
 	GetOrder(ctx context.Context, in *GetOrderRequest, opts ...grpc.CallOption) (*GetOrderResponse, error)
+	GetOrderByUserId(ctx context.Context, in *GetOrdersByUserId, opts ...grpc.CallOption) (*ListOrdersResponse, error)
 }
 
 type orderServiceClient struct {
@@ -68,6 +70,15 @@ func (c *orderServiceClient) GetOrder(ctx context.Context, in *GetOrderRequest, 
 	return out, nil
 }
 
+func (c *orderServiceClient) GetOrderByUserId(ctx context.Context, in *GetOrdersByUserId, opts ...grpc.CallOption) (*ListOrdersResponse, error) {
+	out := new(ListOrdersResponse)
+	err := c.cc.Invoke(ctx, OrderService_GetOrderByUserId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OrderServiceServer is the server API for OrderService service.
 // All implementations must embed UnimplementedOrderServiceServer
 // for forward compatibility
@@ -75,6 +86,7 @@ type OrderServiceServer interface {
 	CreateOrder(context.Context, *CreateOrderRequest) (*CreateOrderResponse, error)
 	ListOrders(context.Context, *ListOrdersRequest) (*ListOrdersResponse, error)
 	GetOrder(context.Context, *GetOrderRequest) (*GetOrderResponse, error)
+	GetOrderByUserId(context.Context, *GetOrdersByUserId) (*ListOrdersResponse, error)
 	mustEmbedUnimplementedOrderServiceServer()
 }
 
@@ -90,6 +102,9 @@ func (UnimplementedOrderServiceServer) ListOrders(context.Context, *ListOrdersRe
 }
 func (UnimplementedOrderServiceServer) GetOrder(context.Context, *GetOrderRequest) (*GetOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrder not implemented")
+}
+func (UnimplementedOrderServiceServer) GetOrderByUserId(context.Context, *GetOrdersByUserId) (*ListOrdersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrderByUserId not implemented")
 }
 func (UnimplementedOrderServiceServer) mustEmbedUnimplementedOrderServiceServer() {}
 
@@ -158,6 +173,24 @@ func _OrderService_GetOrder_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OrderService_GetOrderByUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrdersByUserId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderServiceServer).GetOrderByUserId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderService_GetOrderByUserId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderServiceServer).GetOrderByUserId(ctx, req.(*GetOrdersByUserId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OrderService_ServiceDesc is the grpc.ServiceDesc for OrderService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -176,6 +209,10 @@ var OrderService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOrder",
 			Handler:    _OrderService_GetOrder_Handler,
+		},
+		{
+			MethodName: "GetOrderByUserId",
+			Handler:    _OrderService_GetOrderByUserId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

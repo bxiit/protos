@@ -22,6 +22,18 @@ service OrderService {
       get: "/v1/orders/{id}"
     };
   };
+
+  rpc GetOrderByUserId(GetOrdersByUserId) returns (ListOrdersResponse) {
+    option(google.api.http) = {
+      get: "/v1/users/{userId}/orders"
+    };
+  }
+}
+
+message Order {
+  int32 id = 1 [json_name="id"];
+  int32 item_id = 2 [json_name="item_id"];
+  int32 user_id = 3 [json_name="user_id"];
 }
 
 message ListOrdersRequest {}
@@ -45,17 +57,14 @@ message CreateOrderResponse {
   Order order = 1;
 }
 
-message Order {
-  int32 id = 1 [json_name="id"];
-  int32 item_id = 2 [json_name="item_id"];
-  int32 user_id = 3 [json_name="user_id"];
-}
-
-
 message DeleteOrderRequest {
   int32 id = 1;
 }
 
 message DeleteOrderResponse {
   bool isDeleted = 1;
+}
+
+message GetOrdersByUserId {
+  int32 userId = 1 [json_name="userId"];
 }
